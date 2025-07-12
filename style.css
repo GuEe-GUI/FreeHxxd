@@ -1,0 +1,228 @@
+:root {
+	--layout-top: 2147483643;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Segoe UI', SegoeUI, 'Microsoft YaHei', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	-webkit-tap-highlight-color: transparent;
+}
+@font-face {
+	font-family: 'scans-cv-mod';
+	src: url(scans-cv-mod.woff);
+}
+a {
+	text-decoration: none;
+}
+li {
+	list-style: none;
+}
+.menu {
+	position: fixed;
+	display: none;
+	z-index: var(--layout-top);
+	min-width: 200px;
+	border-radius: 8px;
+	border: 1px solid #eaeaea;
+	background: #fff;
+	box-shadow: 0 0 8px 1px #b0b0b0;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.menu[enabled=true] {
+	display: unset;
+}
+.menu li {
+	margin: 4px;
+	height: 32px;
+	line-height: 32px;
+}
+.menu li a {
+	display: block;
+	padding: 0 6px;
+	border-radius: 8px;
+	font-size: 14px;
+}
+.menu li a[enabled=false] {
+	color: #ababab;
+}
+.menu li a[enabled=true]:hover {
+	background-color: #eaeaea;
+}
+.workspace {
+	display: none;
+}
+.data-input {
+	padding: 4px;
+}
+.data-input:nth-child(even) {
+	background-color: #ffe082;
+}
+.data-input:nth-child(odd) {
+	background-color: #ffc107;
+}
+.data-input li {
+	display: flex;
+	justify-content: space-between;
+	height: 32px;
+	line-height: 32px;
+	margin: 4px 0px;
+}
+.data-input label {
+	display: block;
+	width: 200px;
+	margin-left: 10px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.data-input input {
+	width: calc(100% - 200px);
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 16px;
+	line-height: 32px;
+	outline: none;
+	border-radius: 32px;
+	border: 1px solid;
+}
+.big-btn {
+	cursor: pointer;
+	width: calc(100% - 8px);
+	height: 48px;
+	font-size: 18px;
+	line-height: 48px;
+	margin: 8px 4px;
+	outline: none;
+	border-radius: 32px;
+	border: 1px solid;
+	color: #fff;
+}
+.big-btn.add {
+	background-color: #4caf50;
+}
+.big-btn.add:hover {
+	background-color: #388e3c;
+}
+.big-btn.add:active {
+	background-color: #2e7d32;
+}
+.big-btn.exit, .big-btn.receipt {
+	background-color: #ff5722;
+}
+.big-btn.exit:hover, .big-btn.receipt:hover {
+	background-color: #e64a19;
+}
+.big-btn.exit:active, .big-btn.receipt:active {
+	background-color: #ff7043;
+}
+.table-title {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	color: #fff;
+	background-color: #4caf50;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.table-title-box, .table-item {
+	display: flex;
+	justify-content: space-between;
+	height: 48px;
+	line-height: 48px;
+}
+.table-title-box span {
+	display: block;
+	width: 100% !important;
+	padding: 0 8px;
+	border-right: 2px solid #fff;
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.table-title-box span:last-of-type {
+	border-right: unset;
+}
+.table-item span {
+	flex: 1;
+	padding: 0 8px;
+	border-right: 2px solid #ddd;
+	font-size: 18px;
+}
+.table-item span:first-of-type {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.table-item input {
+	outline: none;
+	border: none;
+	width: 100%;
+	height: 100%;
+	vertical-align: top;
+	background: none;
+	font-size: 18px;
+}
+.table-item:first-of-type {
+	margin-top: 48px;
+}
+.table-item:nth-child(even) {
+	background-color: #ffe082;
+}
+.table-item:nth-child(odd) {
+	background-color: #ffc107;
+}
+.receipt-item {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+table {
+	background-color: #000;
+}
+td, th {
+	min-width: 100px;
+	padding: 0 4px;
+	height: 32px;
+	line-height: 32px;
+	background-color: #fff;
+}
+.receipt-item-value {
+	font-weight: bold;
+	font-family: 'scans-cv-mod';
+	font-size: 32px;
+	vertical-align: bottom;
+}
+#tip {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	background-color: #ffc107;
+	text-shadow: 3px 3px 8px #141414;
+}
+#tip h1 {
+	margin: 50px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
