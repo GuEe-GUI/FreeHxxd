@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>FreeHxxd</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="main.js" charset="utf-8"></script>
+</head>
+<body>
+	<ul class="menu" id="menu">
+		<li><a id="input-user">录入住户</a></li>
+		<hr />
+		<li><a id="import-user">导入住户</a></li>
+		<li><a id="export-user">导出住户</a></li>
+		<hr />
+		<li><a id="import-last">导入前月信息</a></li>
+		<hr />
+		<li><a id="input-current">录入当月信息</a></li>
+		<li><a id="export-current">导出当月信息</a></li>
+	</ul>
+	<div class="workspace" id="workspace-input-user">
+		<div id="input-user-box">
+			<ul class="data-input" template="input-user">
+				<li>
+					<label>住户名称：</label>
+					<input vid="input-user-resident-name" type="text" placeholder="输入名称，空住户不会录入" />
+				</li>
+				<li>
+					<label>用水单价（吨/元）：</label>
+					<input vid="input-user-water-unit-price" type="number" value="0" />
+				</li>
+				<li>
+					<label>用水损耗（%）：</label>
+					<input vid="input-user-water-loss-rate" type="number" value="0" />
+				</li>
+				<li>
+					<label>用电单价（度/元）：</label>
+					<input vid="input-user-electricity-unit-price" type="number" value="0" />
+				</li>
+				<li>
+					<label>用电损耗（%）：</label>
+					<input vid="input-user-electricity-loss-rate" type="number" value="0" />
+				</li>
+				<li>
+					<label>公用电（度）：</label>
+					<input vid="input-user-public-electricity" type="number" value="0" />
+				</li>
+				<li>
+					<label>卫生费（元）：</label>
+					<input vid="input-user-sanitation-fee" type="number" value="0" />
+				</li>
+				<li>
+					<label>管理费（元）：</label>
+					<input vid="input-user-management-fee" type="number" value="0" />
+				</li>
+				<li>
+					<label>其他（元）：</label>
+					<input vid="input-user-other-fees" type="number" value="0" />
+				</li>
+				<li>
+					<label>房租（元）：</label>
+					<input vid="input-user-rent" type="number" value="0" />
+				</li>
+			</ul>
+		</div>
+		<button class="big-btn add" id="data-input-add-btn">添加住户</button>
+		<button class="big-btn exit" id="data-input-exit-btn">结束</button>
+	</div>
+	<div class="workspace" id="workspace-input-using">
+		<div class="table-title">
+			<div class="table-title-box">
+				<span>住户名称</span>
+				<span>上月用水</span>
+				<span>上月用电</span>
+				<span>本月用水</span>
+				<span>本月用电</span>
+				<span>用水单价</span>
+				<span>用水损耗</span>
+				<span>用电单价</span>
+				<span>用电损耗</span>
+				<span>公用电</span>
+				<span>卫生费</span>
+				<span>管理费</span>
+				<span>其他</span>
+				<span>房租</span>
+			</div>
+		</div>
+		<div id="input-using-box">
+			<div class="table-item" template="input-using">
+				<span vid="input-using-resident-name"></span>
+				<span>
+					<input vid="input-using-water-last" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-electricity-last" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-water-current" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-electricity-current" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-water-unit-price" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-water-loss-rate" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-electricity-unit-price" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-electricity-loss-rate" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-public-electricity" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-sanitation-fee" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-management-fee" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-other-fees" type="number" value="0" />
+				</span>
+				<span>
+					<input vid="input-using-rent" type="number" value="0" />
+				</span>
+			</div>
+		</div>
+		<button class="big-btn receipt" id="data-input-receipt-btn">统计</button>
+	</div>
+	<div class="workspace" id="workspace-output">
+		<div class="receipt-item" template="receipt-result">
+			<table border="0">
+				<tbody>
+					<tr>
+						<th>住户</th>
+						<td colspan="3">
+							<span vid="receipt-user-name" class="receipt-item-value"></span>
+						</td>
+						<td colspan="3" style="text-align: right;">
+							<span vid="receipt-date-year" class="receipt-item-value"></span>
+							<b>年</b>
+							<span vid="receipt-date-month" class="receipt-item-value"></span>
+							<b>月</b>
+							<span vid="receipt-date-day" class="receipt-item-value"></span>
+							<b>日</b>
+						</td>
+					</tr>
+					<tr>
+						<th>项目</th>
+						<th>上月</th>
+						<th>本月</th>
+						<th>实用</th>
+						<th>单价</th>
+						<th>金额</th>
+						<th>备注</th>
+					</tr>
+					<tr>
+						<th>水费</th>
+						<td>
+							<span vid="receipt-water-last" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<span vid="receipt-water-current" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<span vid="receipt-water-used" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<span vid="receipt-water-unit-price" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<span vid="receipt-water-total" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<b>损耗：</b>
+							<span vid="receipt-water-loss" class="receipt-item-value"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>电费</th>
+						<td>
+							<span vid="receipt-electricity-last" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<span vid="receipt-electricity-current" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<span vid="receipt-electricity-used" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<span vid="receipt-electricity-unit-price" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<span vid="receipt-electricity-total" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<b>损耗：</b>
+							<span vid="receipt-electricity-loss" class="receipt-item-value"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>卫生费</th>
+						<td colspan="5">
+							<span vid="receipt-sanitation-fee" class="receipt-item-value"></span>
+						</td>
+						<td>
+							<b vid="receipt-public-electricity-text">公用电：</b>
+							<span vid="receipt-public-electricity" class="receipt-item-value"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>管理费</th>
+						<td colspan="6">
+							<span vid="receipt-management-fee" class="receipt-item-value"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>其他费</th>
+						<td colspan="6">
+							<span vid="receipt-other-fees" class="receipt-item-value"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>房租</th>
+						<td colspan="6">
+							<span vid="receipt-rent" class="receipt-item-value"></span>
+						</td>
+					</tr>
+					<tr>
+						<th>合计</th>
+						<th colspan="5">
+							<div vid="receipt-total-text" format="零壹贰叁肆伍陆柒捌玖" unit="￥" style="display: flex;justify-content: space-between;">
+								<span vid="receipt-total-10000" class="receipt-item-value"></span>
+								<span>万</span>
+								<span vid="receipt-total-1000" class="receipt-item-value"></span>
+								<span>仟</span>
+								<span vid="receipt-total-100" class="receipt-item-value"></span>
+								<span>佰</span>
+								<span vid="receipt-total-10" class="receipt-item-value"></span>
+								<span>拾</span>
+								<span vid="receipt-total-1" class="receipt-item-value"></span>
+								<span>元</span>
+								<span vid="receipt-total-0.1" class="receipt-item-value"></span>
+								<span>角</span>
+								<span>\</span>
+								<span>分</span>
+							</div>
+						</th>
+						<td style="text-align: center;">
+							<span vid="receipt-total" class="receipt-item-value"></span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div id="tip">
+		<h1>右键菜单开始操作</h1>
+	</div>
+</body>
+</html>
