@@ -11,6 +11,7 @@ window.addEventListener('load', function() {
 	var export_user = document.getElementById("export-user");
 	var import_last = document.getElementById("import-last");
 	var input_current = document.getElementById("input-current");
+	var import_current = document.getElementById("import-current");
 	var export_current = document.getElementById("export-current");
 
 	function MenuConfig(item, enabled, click_callback) {
@@ -29,6 +30,7 @@ window.addEventListener('load', function() {
 		export_user.setEnable(true);
 		import_last.setEnable(true);
 		input_current.setEnable(true);
+		import_current.setEnable(true);
 		export_current.setEnable(true);
 	}
 
@@ -321,6 +323,34 @@ window.addEventListener('load', function() {
 			input_using_box.appendChild(table_item);
 		});
 		delete vdom;
+	});
+
+	MenuConfig(import_current, false, function() {
+		var input = document.createElement('input');
+		input.setAttribute('type','file');
+		input.setAttribute('accept', ".json");
+		input.click();
+		input.onchange = function() {
+			var result_file = this.files[0];
+
+			if (!result_file) {
+				return;
+			}
+			var reader = new FileReader();
+			reader.readAsText(result_file,'UTF-8');
+			reader.onload = function (e) {
+				var table_item_list = input_using_box.querySelectorAll(".table-item");
+
+				FreeHxxd.current = JSON.parse(this.result);
+
+				table_item_list.forEach(function(table_item) {
+					var name = table_item.querySelector("[vid=input-using-resident-name]").textContent;
+
+					table_item.querySelector("[vid=input-using-water-current]").value = FreeHxxd.current[name]["water"];
+					table_item.querySelector("[vid=input-using-electricity-current]").value = FreeHxxd.current[name]["electricity"];
+				});
+			};
+		}
 	});
 
 	MenuConfig(export_current, false, function() {
